@@ -54,6 +54,8 @@
     
     var mu 					= [[0],[1.5]];
     var cov 				= [[0.75,0],[0,0.75]];
+    
+    var started 		= false;
 
       window_x 	= [width*0.12,width*0.95];
       window_y 	= [height*0.02,height*0.89];
@@ -122,7 +124,7 @@
       .attr("stroke", "#666666")
       .attr("opacity", 0.75)
       .attr("stroke-width", 2.5*height/450)
-      .attr("stroke-dasharray", (3*height/450,7*height/450))
+      .attr("stroke-dasharray", (3*height/450,5*height/450))
       .attr("id","background");
       
     // Plot the prior
@@ -170,12 +172,18 @@
       .attr("id","observation");
 
 
-
+      // On Click, we want to add data to the array and chart
+      svg.on("click", function() {
+      	started = true;
+        })
     
-
+		
     
   		// Make the contour flow
       var repeater = setInterval(function() {
+      
+      	if (started == true) {
+      
       
         var delay 	= 0;
         
@@ -336,14 +344,14 @@
             
         }, delay);
 
-          
+      }
           
           
           
           
       }, 2500);
     
-    
+    	
     
     
     
